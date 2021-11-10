@@ -4,13 +4,15 @@ import './App.css';
 import Home from './pages/Home/Home/Home';
 import Login from './pages/Login/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
-import Register from './pages/Register/Register';
+import Register from './pages/Login/Register/Register';
 import PlaceOrder from './pages/Shop/PlaceOrder/PlaceOrder';
 import Shop from './pages/Shop/Shop/Shop';
+import AuthProvider from './contexts/AuthProvider/AuthProvider';
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <BrowserRouter>
         <Switch>
         <Route exact path='/'>
@@ -36,6 +38,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
