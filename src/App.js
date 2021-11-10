@@ -4,6 +4,8 @@ import './App.css';
 import Home from './pages/Home/Home/Home';
 import Login from './pages/Login/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
+import Register from './pages/Register/Register';
+import PlaceOrder from './pages/Shop/PlaceOrder/PlaceOrder';
 import Shop from './pages/Shop/Shop/Shop';
 
 function App() {
@@ -20,8 +22,14 @@ function App() {
           <Route  path='/shop'>
             <Shop></Shop>
           </Route>
+          <Route  path='/placeorder'>
+            <PlaceOrder></PlaceOrder>
+          </Route>
           <Route  path='/login'>
             <Login></Login>
+          </Route>
+          <Route  path='/register'>
+            <Register></Register>
           </Route>
           <Route  path='*'>
             <NotFound></NotFound>

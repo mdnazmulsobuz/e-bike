@@ -20,7 +20,7 @@ const Product = () => {
                 </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <Link to=''><button className='btn btn-primary px-4 my-2'>BUY NOW</button> 
+                    <Link to='/placeorder'><button className='btn btn-primary px-4 my-2'>BUY NOW</button> 
                     </Link>
                 </Card.Footer>
             </Card>
