@@ -8,6 +8,7 @@ import Register from './pages/Login/Register/Register';
 import PlaceOrder from './pages/Shop/PlaceOrder/PlaceOrder';
 import Shop from './pages/Shop/Shop/Shop';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
+import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -24,9 +25,9 @@ function App() {
           <Route  path='/shop'>
             <Shop></Shop>
           </Route>
-          <Route  path='/placeorder'>
+          <PrivateRoute  path='/placeorder'>
             <PlaceOrder></PlaceOrder>
-          </Route>
+          </PrivateRoute>
           <Route  path='/login'>
             <Login></Login>
           </Route>

@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { Container, Button } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Container, Button, Spinner, Alert } from 'react-bootstrap';
+import { NavLink, useLocation, useHistory} from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 import './Login.css';
 
 const Login = () => {
     const [loginData, setLoginData] = useState();
+    const {user, loginUser, isLoading, authError} = useAuth();
 
-    const handleOnChange = e =>{
+    const location = useLocation();
+    const history = useHistory();
+
+    const handleOnBlur = e =>{
         const field = e.target.name;
         const value = e.target.value;
         const newLoginData = {...loginData};
@@ -14,7 +19,7 @@ const Login = () => {
         setLoginData(newLoginData);
     }
     const handleLoginSubmit = e =>{
-        alert('helleo World')
+        loginUser(loginData.email, loginData.password, location, history);
         e.preventDefault();
     }
     
@@ -27,13 +32,16 @@ const Login = () => {
                     type='email' 
                     placeholder="Your-Email"
                     name="email"
-                    onChange={handleOnChange}  />
+                    onBlur={handleOnBlur}  />
                 <input 
                     type='password' 
                     name='password'
-                    onChange={handleOnChange}
+                    onBlur={handleOnBlur}
                     placeholder="Your-Password"  />
                 <Button type='submit'>Login</Button>
+                {isLoading && <Spinner animation="grow" />}
+                {user?.email &&  <Alert variant="success"> Login Successfully</Alert>} 
+                {authError && <Alert variant="danger">{authError} </Alert>} 
             </form>
             <NavLink
                 style={{textDecoration: 'none'}}

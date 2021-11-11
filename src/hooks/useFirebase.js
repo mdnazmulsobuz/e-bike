@@ -1,37 +1,52 @@
 import { useEffect, useState } from "react";
 import initializeFirebase from "../pages/Login/Login/Firebase/firebase.init";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword,  signOut} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, updateProfile, signOut} from "firebase/auth";
 
 
 // initialize firebase app
 initializeFirebase();
 const useFirebase = () =>{
     const [user, setUser] = useState({});
-
+    const [isLoading, setIsloading] = useState(true);
+    const [authError, setAuthError] = useState('');
     const auth = getAuth();
 
-    const registerUser = (email, password) =>{
+    const registerUser = (email, password, name, history) =>{
+        setIsloading(true);
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+          setAuthError('');
+          const newUser = {email, displayName: name};
+          setUser(newUser);
+          // send name on firebase
+          updateProfile(auth.currentUser, {
+            displayName: name
+          }).then(() => {
+            
+          }).catch((error) => {
+            
           });
+          history.replace('/');
+        })
+          .catch((error) => {
+            setAuthError(error.message);
+          })
+          .finally( ()=> setIsloading(false));
     }
     
-    const loginUser = (email, password) =>{
+    const loginUser = (email, password, location, history) =>{
+        setIsloading(true);
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
+          const destination = location?.state?.from  || '/';
+          history.replace(destination);
+          setAuthError('');
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        });
+          setAuthError(error.message);
+        })
+        .finally( ()=> setIsloading(false));
+        ;
     }
 
 
@@ -42,21 +57,24 @@ const useFirebase = () =>{
             setUser(user)
           } else {
             setUser({})
-          }
+          }setIsloading(false);
         });
         return () => unsubscribe;
-    }, [])
+    }, [auth])
 
     const logOut = () =>{
         signOut(auth).then(() => {
 
           }).catch((error) => {
 
-          });
+          })
+          .finally( ()=> setIsloading(false));
     }
 
     return{
         user, 
+        isLoading,
+        authError,
         registerUser,
         logOut,
         loginUser
