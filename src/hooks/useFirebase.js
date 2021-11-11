@@ -29,6 +29,7 @@ const useFirebase = () =>{
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+          
             setAuthError('');
         })
         .catch((error) => {
