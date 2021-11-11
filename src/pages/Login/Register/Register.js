@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Button, Spinner, Alert } from 'react-bootstrap';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const Register = () => {
     const [registerData, setRegisterData] = useState();
-    const history = useHistory()
     const {user, registerUser, isLoading, authError} = useAuth();
 
-    const handleOnBlur = e =>{
+    const handleOnChange = e =>{
         const field = e.target.name;
         const value = e.target.value;
         const newRegisterData = {...registerData};
@@ -21,7 +20,7 @@ const Register = () => {
             alert('Password did not match!')
             return
         }
-        registerUser(registerData.email, registerData.password, registerData.name,history)
+        registerUser(registerData.email, registerData.password)
         e.preventDefault();
     }
     return (
@@ -31,28 +30,28 @@ const Register = () => {
             {!isLoading && <form onSubmit={handleRegisterSubmit}>
                 <input 
                     placeholder="Your-Name"
-                    onBlur={handleOnBlur} 
+                    onChange={handleOnChange} 
                     name='name' />
                 <input 
                     type='email' 
                     placeholder="Your-Email" 
-                    onBlur={handleOnBlur}
+                    onChange={handleOnChange}
                     name='email' />
                 <input 
                     type='password' 
                     placeholder="Type Password"
-                    onBlur={handleOnBlur} 
+                    onChange={handleOnChange} 
                     name='password'/>
                 <input 
                     type='password' 
                     placeholder="Re-type Password"
                     name='password1'
-                    onBlur={handleOnBlur} />
+                    onChange={handleOnChange} />
                 <Button type='submit'>Register</Button>
             </form>}
             {isLoading && <Spinner animation="grow" />}
-            {user?.email &&  <Alert variant="success"> User Created Sucessfully.</Alert>}
-            {authError && <Alert variant="danger">{authError} </Alert>} 
+            {user?.email && <Alert variant= 'success'> Registration Successfully Done.</Alert>}
+            {authError && <Alert variant= 'danger'> {authError}</Alert>}
             <NavLink
                 style={{textDecoration: 'none'}}
                 to="/Login"><h5 style={{color: '#000'}} className="pt-3">Already Registered? Login Here.</h5>

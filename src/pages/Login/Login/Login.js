@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { Container, Button, Spinner, Alert } from 'react-bootstrap';
-import { NavLink, useLocation, useHistory} from 'react-router-dom';
-import useAuth from '../../../hooks/useAuth';
+import { NavLink } from 'react-router-dom';
 import './Login.css';
+import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
     const [loginData, setLoginData] = useState();
     const {user, loginUser, isLoading, authError} = useAuth();
 
-    const location = useLocation();
-    const history = useHistory();
-
-    const handleOnBlur = e =>{
+    const handleOnChange = e =>{
         const field = e.target.name;
         const value = e.target.value;
         const newLoginData = {...loginData};
@@ -19,7 +16,7 @@ const Login = () => {
         setLoginData(newLoginData);
     }
     const handleLoginSubmit = e =>{
-        loginUser(loginData.email, loginData.password, location, history);
+        loginUser(loginData.email, loginData.password);
         e.preventDefault();
     }
     
@@ -32,21 +29,22 @@ const Login = () => {
                     type='email' 
                     placeholder="Your-Email"
                     name="email"
-                    onBlur={handleOnBlur}  />
+                    onChange={handleOnChange}  />
                 <input 
                     type='password' 
                     name='password'
-                    onBlur={handleOnBlur}
+                    onChange={handleOnChange}
                     placeholder="Your-Password"  />
                 <Button type='submit'>Login</Button>
                 {isLoading && <Spinner animation="grow" />}
-                {user?.email &&  <Alert variant="success"> Login Successfully</Alert>} 
-                {authError && <Alert variant="danger">{authError} </Alert>} 
+                {user?.email && <Alert variant= 'success'> Login Successfully Done.</Alert>}
+                {authError && <Alert variant= 'danger'> {authError}</Alert>}
             </form>
             <NavLink
                 style={{textDecoration: 'none'}}
                 to="/register"><h5 style={{color: '#000'}} className="pt-3">New User? Register Here.</h5>
             </NavLink>
+                
         </Container>
         </div>
     );
