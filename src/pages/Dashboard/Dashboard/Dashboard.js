@@ -1,18 +1,13 @@
 import React from 'react';
-
-import {  Col, Row } from 'react-bootstrap';
+import Navbar from '../Navbar/Navbar';
+import './Dashboard.css';
+import {GiHamburgerMenu} from 'react-ic'
  
 const Dashboard = () => {
     return (
         <div>
-            <Row>
-                <Col md={3}>
-                    sidebar
-                </Col>
-                <Col md={9}>
-                    container
-                </Col>
-            </Row>
+            <header> <GiHamburgerMenu /></header>
+            <Navbar></Navbar>
         </div>
     );
 };
