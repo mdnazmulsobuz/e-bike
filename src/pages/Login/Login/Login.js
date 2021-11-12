@@ -1,28 +1,34 @@
 import React, { useState } from 'react';
 import { Container, Button, Spinner, Alert } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useHistory} from 'react-router-dom';
 import './Login.css';
 import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
-    const [loginData, setLoginData] = useState();
+    const [loginData, setLoginData] = useState({});
     const {user, loginUser, isLoading, authError} = useAuth();
     
+    const location = useLocation();
+    const history = useHistory();
 
-    const handleOnChange = e =>{
+    const handleOnBlur = e =>{
         const field = e.target.name;
         const value = e.target.value;
         const newLoginData = {...loginData};
         newLoginData[field] = value;
         setLoginData(newLoginData);
     }
+
+   
+
     const handleLoginSubmit = e =>{
-        loginUser(loginData.email, loginData.password);
+        loginUser(loginData.email, loginData.password, location, history);
         e.preventDefault();
     }
-    
+   
     return (
-        <div  className='login py-5 mb-5'>
+        <div>
+            <div  className='login py-5 mb-5'>
             <Container>
             <h2 className="pt-5 pb-3">Please Login Here!</h2>
             <form onSubmit={handleLoginSubmit}>
@@ -30,13 +36,13 @@ const Login = () => {
                     type='email' 
                     placeholder="Your-Email"
                     name="email"
-                    onChange={handleOnChange}  />
+                    onBlur={handleOnBlur}  />
                 <input 
                     type='password' 
                     name='password'
-                    onChange={handleOnChange}
+                    onBlur={handleOnBlur}
                     placeholder="Your-Password"  />
-                <Button type='submit'>Login</Button>
+                <Button className='mb-4' type='submit'>Login</Button> <br />
                 {isLoading && <Spinner animation="grow" />}
                 {user?.email && <Alert variant= 'success'> Login Successfully Done.</Alert>}
                 {authError && <Alert variant= 'danger'> {authError}</Alert>}
@@ -47,6 +53,7 @@ const Login = () => {
             </NavLink>
                 
         </Container>
+        </div>
         </div>
     );
 };

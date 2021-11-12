@@ -20,7 +20,7 @@ form {
     font-weight: 200;
   }
   
-  input {
+  input, textarea {
     display: block;
     box-sizing: border-box;
     width: 100%;

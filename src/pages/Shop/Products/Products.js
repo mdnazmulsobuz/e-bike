@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
-import Footer from '../../Shared/Footer/Footer';
-import Header from '../../Shared/Header/Header';
+import { Link } from 'react-router-dom';
 import Product from '../Product/Product';
 
 const Products = () => {
@@ -12,22 +11,20 @@ const Products = () => {
         .then(data =>setProducts(data));
     }, [])
     return (
-        <div>
-            <Header></Header>
-            <div className='container py-5'>
+        <div className='container py-5'>
+            <h2>Top Rates</h2>
             <div className='row'>   
                 {
                     products.length === 0 ? 
                     <Spinner animation="border" variant="primary" />
                     : 
-                    products.map(p =><Product
+                    products.slice(0,6).map(p =><Product
                     key={p._id}
                     products={p}
                     ></Product>)
                 }
             </div>
-        </div>
-        <Footer></Footer>
+            <Link to='/shop'><button className='btn btn-success'>See More</button></Link>
         </div>
     );
 };
