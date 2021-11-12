@@ -61,7 +61,7 @@ const useFirebase = () =>{
           setIsLoading(false);
         });
         return () => unsubscribe;
-    }, [auth])
+    }, [])
 
     const logOut = () =>{
         signOut(auth).then(() => {

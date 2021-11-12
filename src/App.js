@@ -9,9 +9,7 @@ import PlaceOrder from './pages/Shop/PlaceOrder/PlaceOrder';
 import Shop from './pages/Shop/Shop/Shop';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
-import AddProduct from './pages/Dashboard/AddProduct/AddProduct';
 import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
-import MakeAdmin from './pages/Dashboard/MakeAdmin/MakeAdmin';
 
 function App() {
   return (
@@ -28,18 +26,12 @@ function App() {
           <Route  path='/shop'>
             <Shop></Shop>
           </Route>
-          <PrivateRoute  path='/placeorder'>
+          <PrivateRoute  path='/placeorder/:productId'>
             <PlaceOrder></PlaceOrder>
           </PrivateRoute>
           <PrivateRoute  path='/dashboard'>
             <Dashboard></Dashboard>
           </PrivateRoute>
-          <Route  path='/addproduct'>
-            <AddProduct></AddProduct>
-          </Route>
-          <Route  path='/makeadmin'>
-            <MakeAdmin></MakeAdmin>
-          </Route>
           <Route  path='/login'>
             <Login></Login>
           </Route>
