@@ -24,7 +24,7 @@ const Products = () => {
                     ></Product>)
                 }
             </div>
-            <Link to='/shop'><button className='btn btn-success'>See More</button></Link>
+            <Link to='/shop'><button className='btn btn-success'>All Products</button></Link>
         </div>
     );
 };
