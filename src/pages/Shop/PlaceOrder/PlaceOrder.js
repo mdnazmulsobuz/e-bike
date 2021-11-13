@@ -11,7 +11,7 @@ const PlaceOrder = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const {user} = useAuth();
     const histroy = useHistory();
-    const redirect_uri = '/dashboard/pay';
+    const redirect_uri = '/shop';
     const {productId} = useParams();
     const [orderItem, setOrderItem] = useState({});
     const onSubmit = data => {

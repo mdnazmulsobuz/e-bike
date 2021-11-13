@@ -14,6 +14,7 @@ const Header = () => {
                 <Navbar.Collapse className="justify-content-end">
                         <Nav.Link as={Link} to="/home">Home</Nav.Link>
                         <Nav.Link as={Link} to="/shop">Shop</Nav.Link>
+                        <Nav.Link as={Link} to="/allreview">Review</Nav.Link>
                         {
                             user?.email ? 
                                <>

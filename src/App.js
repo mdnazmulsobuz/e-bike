@@ -10,6 +10,7 @@ import Shop from './pages/Shop/Shop/Shop';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
 import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
+import AllReviews from './pages/Reviews/AllReviews/AllReviews';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route  path='/shop'>
             <Shop></Shop>
+          </Route>
+          <Route  path='/allreview'>
+            <AllReviews></AllReviews>
           </Route>
           <PrivateRoute  path='/placeorder/:productId'>
             <PlaceOrder></PlaceOrder>

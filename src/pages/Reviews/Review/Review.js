@@ -1,25 +1,32 @@
 import React from 'react';
 import { Card, CardGroup } from 'react-bootstrap';
+import Rating from 'react-rating';
+import './Review.css';
 
-const Review = () => {
+const Review = ({reviews}) => {
+    const {name, email, review, rate} = reviews;
     return (
         <div className='container col-md-3 co-sm-6 col-12 my-3'>
         <CardGroup>
             <Card>
                 <Card.Body>
                    <Card.Text>
-                        Rating area 5
+                        {review}
                     </Card.Text>
                    <Card.Text>
-                        "Review Area"
+                        <Rating 
+                        initialRating = {rate}
+                        emptySymbol="far fa-star icon-color"
+                        fullSymbol="fas fa-star icon-color"
+                        readonly></Rating>
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
                     <Card.Title>
-                        User Name
+                        {name}
                     </Card.Title>
                     <Card.Text>
-                        User Email @
+                        {email}
                     </Card.Text>
                 </Card.Footer>
             </Card>

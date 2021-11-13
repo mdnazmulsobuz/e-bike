@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row, Table } from 'react-bootstrap';
 import useAuth from '../../../hooks/useAuth';
-import Product from '../../Shop/Product/Product';
 
 const MyOrder = () => {
     const {user } = useAuth();

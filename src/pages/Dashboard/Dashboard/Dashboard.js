@@ -16,7 +16,7 @@ import ManageOrders from '../ManageOrders/ManageOrders';
 import ManageProducts from '../ManageProducts/ManageProducts';
 import Pay from '../Pay/Pay';
 import MyOrder from '../MyOrder/MyOrder';
-import Review from '../Review/Review';
+import MyReview from '../MyReview/MyReview';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 
 const Dashboard = () => {
@@ -52,18 +52,15 @@ const Dashboard = () => {
                         <>
                             <Link to={`${url}/pay`}><Button variant="light" className='w-100 my-2'>Pay Now</Button></Link>
                             <Link to={`${url}/myorder`}><Button variant="light" className='w-100 my-2'>My Order</Button></Link>
-                            <Link to={`${url}/review`}><Button variant="light" className='w-100 my-2'>Review</Button></Link>
+                            <Link to={`${url}/myreview`}><Button variant="light" className='w-100 my-2'>My Review</Button></Link>
                         </>
-
                     }
-                    
                     <Button variant='light' onClick={logOut}>Logout</Button>
                     </Nav>
                 </Offcanvas.Body>
                 </Navbar.Offcanvas>
                 <Navbar.Brand><img src={logo} alt="" /></Navbar.Brand>
                 <Navbar.Brand></Navbar.Brand>
-                
             </Container>
         </Navbar>
         <div>
@@ -89,8 +86,8 @@ const Dashboard = () => {
             <Route path={`${path}/myorder`}>
                 <MyOrder></MyOrder>
             </Route>
-            <Route path={`${path}/review`}>
-                <Review></Review>
+            <Route path={`${path}/myreview`}>
+                <MyReview></MyReview>
             </Route>
       </Switch>
         </div>
