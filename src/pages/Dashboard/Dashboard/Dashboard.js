@@ -11,10 +11,16 @@ import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import logo from '../../../images/logo.png';
 import './Dashboard.css';
 import useAuth from '../../../hooks/useAuth';
+import DashboradHome from '../DashboardHome/DashboradHome';
+import ManageOrders from '../ManageOrders/ManageOrders';
+import ManageProducts from '../ManageProducts/ManageProducts';
+import Pay from '../Pay/Pay';
+import MyOrder from '../MyOrder/MyOrder';
+import Review from '../Review/Review';
 
 const Dashboard = () => {
     let { path, url } = useRouteMatch();
-    const {logOut} = useAuth();
+    const {admin, logOut} = useAuth();
     return (
         <div className='dashboard'>
         <Navbar bg="light" expand={false}>
@@ -33,8 +39,23 @@ const Dashboard = () => {
                     
                     <Link to='/home'><Button variant="light" className='w-100 my-2'>Home</Button></Link>
                     <Link to={`${url}`}><Button variant="light" className='w-100 my-2'>Dashboard</Button></Link>
-                    <Link to={`${url}/makeadmin`}><Button variant="light" className='w-100 my-2'>Make Admin</Button></Link>
-                    <Link to={`${url}/addproduct`}><Button variant="light" className='w-100 my-2'>Add Product</Button></Link>
+                    {admin &&
+                        <>
+                            <Link to={`${url}/makeadmin`}><Button variant="light" className='w-100 my-2'>Make Admin</Button></Link>
+                            <Link to={`${url}/manageorders`}><Button variant="light" className='w-100 my-2'>Manage Orders</Button></Link>
+                            <Link to={`${url}/addproduct`}><Button variant="light" className='w-100 my-2'>Add Product</Button></Link>
+                            <Link to={`${url}/manageproducts`}><Button variant="light" className='w-100 my-2'>Manage Products</Button></Link>
+                        </>
+                    }
+                    {!admin && 
+                        <>
+                            <Link to={`${url}/pay`}><Button variant="light" className='w-100 my-2'>Pay Now</Button></Link>
+                            <Link to={`${url}/myorder`}><Button variant="light" className='w-100 my-2'>My Order</Button></Link>
+                            <Link to={`${url}/review`}><Button variant="light" className='w-100 my-2'>Review</Button></Link>
+                        </>
+
+                    }
+                    
                     <Button variant='light' onClick={logOut}>Logout</Button>
                     </Nav>
                 </Offcanvas.Body>
@@ -47,13 +68,28 @@ const Dashboard = () => {
         <div>
         <Switch>
             <Route exact path={path}>
-                <h2>May Dashboard</h2>
+                <DashboradHome></DashboradHome>
             </Route>
             <Route path={`${path}/makeadmin`}>
                 <MakeAdmin></MakeAdmin>
             </Route>
             <Route path={`${path}/addproduct`}>
                 <AddProduct></AddProduct>
+            </Route>
+            <Route path={`${path}/manageorders`}>
+                <ManageOrders></ManageOrders>
+            </Route>
+            <Route path={`${path}/manageproducts`}>
+                <ManageProducts></ManageProducts>
+            </Route>
+            <Route path={`${path}/pay`}>
+                <Pay></Pay>
+            </Route>
+            <Route path={`${path}/myorder`}>
+                <MyOrder></MyOrder>
+            </Route>
+            <Route path={`${path}/review`}>
+                <Review></Review>
             </Route>
       </Switch>
         </div>
