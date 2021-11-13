@@ -12,7 +12,8 @@ const useFirebase = () =>{
 
 
     const auth = getAuth();
-
+  
+    // user registration function
     const registerUser = (email, password, name, history) =>{
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
@@ -20,13 +21,15 @@ const useFirebase = () =>{
             setAuthError('');  
             const newUser = {email, displayName: name };
             setUser(newUser);
+            // save user to database
+            saveUser(email, name);
             // send me to after creation
             updateProfile(auth.currentUser, {
               displayName: name
             }).then(() => {
             }).catch((error) => {
             });
-            history.replace('/');     
+            history.replace('/dashboard');     
           })
           .catch((error) => {
             setAuthError(error.message);
@@ -34,6 +37,7 @@ const useFirebase = () =>{
           .finally(()=> setIsLoading(false));
     }
     
+    // User login function
     const loginUser = (email, password, location, history) =>{
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
@@ -61,15 +65,27 @@ const useFirebase = () =>{
           setIsLoading(false);
         });
         return () => unsubscribe;
-    }, [])
+    }, [auth])
 
-    const logOut = () =>{
-        signOut(auth).then(() => {
+    function logOut() {
+    signOut(auth).then(() => {
+    }).catch((error) => {
+    })
+      .finally(() => setIsLoading(false));
+  }
 
-          }).catch((error) => {
+  // saved user function
+    const saveUser = (email, displayName) =>{
+      const user = {email, displayName};
+      fetch('http://localhost:5000/users', {
+        method: 'POST',
+        headers: {
+          'content-type' : 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+      .then()
 
-          })
-          .finally(() => setIsLoading(false));
     }
 
     return{

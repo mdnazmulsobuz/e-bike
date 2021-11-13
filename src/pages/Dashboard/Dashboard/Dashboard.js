@@ -30,9 +30,11 @@ const Dashboard = () => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Nav className="justify-content-start ">
-                    <Button variant='light'><Nav.Link as={Link} to='/'>Home</Nav.Link></Button>
-                    <Button variant='light'><Nav.Link as={Link} to={`${url}/addproduct`}>Add Product</Nav.Link></Button>
-                    <Button variant='light'><Nav.Link as={Link} to={`${url}/makeadmin`}>Make Admin</Nav.Link></Button>
+                    
+                    <Link to='/home'><Button variant="light" className='w-100 my-2'>Home</Button></Link>
+                    <Link to={`${url}`}><Button variant="light" className='w-100 my-2'>Dashboard</Button></Link>
+                    <Link to={`${url}/makeadmin`}><Button variant="light" className='w-100 my-2'>Make Admin</Button></Link>
+                    <Link to={`${url}/addproduct`}><Button variant="light" className='w-100 my-2'>Add Product</Button></Link>
                     <Button variant='light' onClick={logOut}>Logout</Button>
                     </Nav>
                 </Offcanvas.Body>
@@ -44,12 +46,15 @@ const Dashboard = () => {
         </Navbar>
         <div>
         <Switch>
-        <Route path={path}>
-          <AddProduct></AddProduct>
-        </Route>
-        <Route path={`${path}/:makeadmin`}>
-            <MakeAdmin></MakeAdmin>
-        </Route>
+            <Route exact path={path}>
+                <h2>May Dashboard</h2>
+            </Route>
+            <Route path={`${path}/makeadmin`}>
+                <MakeAdmin></MakeAdmin>
+            </Route>
+            <Route path={`${path}/addproduct`}>
+                <AddProduct></AddProduct>
+            </Route>
       </Switch>
         </div>
 
