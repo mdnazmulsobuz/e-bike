@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Alert, Button } from 'react-bootstrap';
-// import useAuth from '../../../hooks/useAuth';
+import {  Button } from 'react-bootstrap';
 
 
 const MakeAdmin = () => {
     const [email, setEmail] = useState('');
     const [success, setSuccess] = useState('false');
-    // const {token} = useAuth();
 
     const handleOnBlur = e =>{
         setEmail(e.target.value)
@@ -16,7 +14,6 @@ const MakeAdmin = () => {
         fetch('http://localhost:5000/users/admin', {
             method: 'PUT',
             headers: {
-                // 'authorization' : `Bearer ${token}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify(user)
@@ -25,9 +22,11 @@ const MakeAdmin = () => {
         .then(data =>{
             console.log(data);
             if(data.modifiedCount){
-                setEmail('');
                 setSuccess(true);
-            }
+                alert('User Added as Admin Successfully');
+            }else{!user && success(false);
+                alert('Yor are put inavalid user.')
+            }         
         })
         e.preventDefault()
     }
@@ -41,7 +40,6 @@ const MakeAdmin = () => {
                     name="email"
                     onBlur={handleOnBlur}  />
                 <Button className='mb-4' type='submit'>Make Admin</Button>
-                {success && <Alert severity="success"> Admin add Successfully</Alert>}
             </form>
             
         </div>

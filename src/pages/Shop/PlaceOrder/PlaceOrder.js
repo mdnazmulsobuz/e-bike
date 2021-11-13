@@ -11,17 +11,19 @@ const PlaceOrder = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const {user} = useAuth();
     const histroy = useHistory();
-    const redirect_uri = '/shop';
+    const redirect_uri = '/dashboard/pay';
     const {productId} = useParams();
     const [orderItem, setOrderItem] = useState({});
     const onSubmit = data => {
     const orderData ={
         name: orderItem.title,
         price: orderItem.price,
+        img: orderItem.img,
         user: data.name,
         email: data.email,
         city: data.city,
         phone: data.phone,
+        status: data.status
         
         }
         axios.post('http://localhost:5000/orders', orderData)
@@ -52,7 +54,8 @@ const PlaceOrder = () => {
                             {errors.email && <span className='text-danger'>This field is required</span>}
                         <input placeholder='Address' defaultValue="" {...register("address")} />
                         <input placeholder='City' defaultValue="" {...register("city")} />
-                        <input placeholder='Phone Number'defaultValue="" {...register("phone")} />
+                        <input placeholder='Phone Number' defaultValue="" {...register("phone")} />
+                        <input placeholder='Order Status' defaultValue="Pending" {...register("status")} />
                         <Button type="submit">Place Order</Button> 
                     </form>
                 </Col>
