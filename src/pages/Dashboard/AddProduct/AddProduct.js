@@ -17,7 +17,7 @@ const AddProduct = () => {
     
   }
     return (
-        <div className='py-5 my-5'>
+        <div className='py-5 m-3'>
             <h2>Add Product Here!</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("title", { required: true})} placeholder='Product Title' />

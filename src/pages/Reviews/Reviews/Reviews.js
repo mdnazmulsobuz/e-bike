@@ -26,7 +26,7 @@ const Reviews = () => {
                 }
             
             </div>
-            <Link to='/allreviewc'><button className='btn btn-success'>Load More</button></Link>
+            <Link to='/allreview'><button className='btn btn-success'>Load More</button></Link>
         </div>
     );
 };

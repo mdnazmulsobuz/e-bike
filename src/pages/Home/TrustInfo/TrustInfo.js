@@ -10,7 +10,7 @@ const TrustInfo = () => {
         <div className=' py-5 trust-section'>
             <Container>
             <Row className="my-5">
-                <Col className="col-md-4 co-sm-6 col-12 trustinfo">
+                <Col className="col-md-4 co-sm-6 col-6 trustinfo">
                     <div className="info">
                         <div className="row ">
                         <div className="col-md-4">
@@ -23,7 +23,7 @@ const TrustInfo = () => {
                         </div>
                     </div>
                 </Col>
-                <Col className=" col-md-4 co-sm-6 col-12 trustinfo">
+                <Col className=" col-md-4 co-sm-6 col-16 trustinfo">
                     <div className="info">
                         <div className="row ">
                         <div className="col-md-4">
@@ -36,7 +36,7 @@ const TrustInfo = () => {
                         </div>
                     </div>
                 </Col>
-                <Col className="col-md-4 co-sm-6 col-12 trustinfo ">
+                <Col className="col-md-4 co-sm-6 col-6 trustinfo ">
                     <div className="info">
                         <div className="row ">
                         <div className="col-md-4">

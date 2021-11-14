@@ -31,7 +31,7 @@ const MakeAdmin = () => {
         e.preventDefault()
     }
     return (
-        <div className='py-5 my-5'>
+        <div className='py-5 m-3'>
             <h2>Make me admin.</h2>
             <form onSubmit={handleAdminSubmit}>
                 <input 

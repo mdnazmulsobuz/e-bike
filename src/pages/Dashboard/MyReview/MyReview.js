@@ -18,7 +18,7 @@ const MyReview = () => {
     }
 
     return (
-        <div className='py-5'>
+        <div className='p-3'>
             <h2>Your Feedbak!</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input defaultValue={user.displayName} {...register("name")} />
