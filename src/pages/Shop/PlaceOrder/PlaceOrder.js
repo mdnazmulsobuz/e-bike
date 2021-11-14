@@ -26,7 +26,7 @@ const PlaceOrder = () => {
         status: data.status
         
         }
-        axios.post('http://localhost:5000/orders', orderData)
+        axios.post('https://floating-earth-16094.herokuapp.com/orders', orderData)
         .then(res =>{
             if(res.data.insertedId){
                 alert('Order Submitted. Sucessfully Added On My Order.');
@@ -36,7 +36,7 @@ const PlaceOrder = () => {
     };
   
     useEffect(()=>{
-        fetch(`http://localhost:5000/products/${productId}`)
+        fetch(`https://floating-earth-16094.herokuapp.com/products/${productId}`)
         .then(res=>res.json())
         .then(data =>setOrderItem(data));
     }, [productId]);

@@ -1,3 +1,12 @@
 .icon-color{
     color: Gold;
 }
+.review-info{
+    box-shadow: 5px 5px 15px 5px #BDB099;
+    border-radius: 20px;
+}
+
+.review-info h5{
+    border-top: 2px solid #BDB099;
+    
+}

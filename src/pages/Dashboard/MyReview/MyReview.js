@@ -8,7 +8,7 @@ const MyReview = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const {user} = useAuth();
     const onSubmit = (data) =>{
-        axios.post('http://localhost:5000/reviews', data)
+        axios.post('https://floating-earth-16094.herokuapp.com/reviews', data)
     .then(res=>{
         if(res.data.insertedId){
         alert('Review Added Successfully')

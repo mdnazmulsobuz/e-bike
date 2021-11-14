@@ -7,14 +7,14 @@ const MyOrder = () => {
     const [orders, setOrders] = useState([]);
     
     useEffect( () =>{
-        fetch(`http://localhost:5000/orders/${user.email}`)
+        fetch(`https://floating-earth-16094.herokuapp.com/orders/${user.email}`)
         .then(res => res.json())
         .then(data => setOrders(data));
     },[user.email]);
 
     const handleDelete = id => {
         const confirmation = window.confirm("Are you sure to delete!!");
-        const url = `http://localhost:5000/orders/${id}`;
+        const url = `https://floating-earth-16094.herokuapp.com/orders/${id}`;
         if (confirmation){
         fetch(url, {
             method: 'DELETE'

@@ -6,7 +6,7 @@ import Review from '../Review/Review';
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/reviews')
+        fetch('https://floating-earth-16094.herokuapp.com/reviews')
         .then(res=>res.json())
         .then(data =>setReviews(data));
     }, [])
@@ -14,6 +14,7 @@ const Reviews = () => {
         <div className='container py-5'>
             <h2>Latest Reviews</h2>
             <div className='row'>   
+               
                 {
                     reviews.length === 0 ? 
                     <Spinner animation="border" variant="primary" />
@@ -23,8 +24,9 @@ const Reviews = () => {
                     reviews={r}
                     ></Review>)
                 }
+            
             </div>
-            <Link to='/allreview'><button className='btn btn-success'>Load More</button></Link>
+            <Link to='/allreviewc'><button className='btn btn-success'>Load More</button></Link>
         </div>
     );
 };

@@ -5,13 +5,13 @@ const ManageOrders = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect( () =>{
-        fetch('http://localhost:5000/orders')
+        fetch('https://floating-earth-16094.herokuapp.com/orders')
         .then(res => res.json())
         .then(data => setOrders(data));
     },[]);
 
     const handleDelete = id => {
-        const url = `http://localhost:5000/orders/${id}`;
+        const url = `https://floating-earth-16094.herokuapp.com/orders/${id}`;
         const confirmation = window.confirm("Are you sure to detlete orders!!");
         if(confirmation){
         fetch(url, {

@@ -1,7 +1,9 @@
 .trust-section{
     background-color: #ecf0f1;
 }
-
-.trustinfo:hover{
+.info{
     box-shadow:  5px 5px 5px 5px #BDB099;
+    padding-top: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
 }
