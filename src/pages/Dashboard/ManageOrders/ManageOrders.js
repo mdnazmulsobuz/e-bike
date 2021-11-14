@@ -53,7 +53,7 @@ const ManageOrders = () => {
                                 <td className='text-success fs-5'>{order.name}</td>
                                 <td>{order.user}</td>
                                 <td>{order.email}</td>
-                                <td className='text-danger'>{order.status}</td>
+                                <td  className='text-danger'>{order.status}</td>
                                 <td>
                                     <button className='btn btn-success'>Approve</button>
                                 </td>
